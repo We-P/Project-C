@@ -1,0 +1,71 @@
+---
+- hosts: sonarqube
+  remote_user: root
+  become: yes
+  become_method: sudo
+  gather_facts: false
+  vars_files:
+    - vars/awscredentials.yml
+
+  tasks:
+  - name: "Update cache & Full system update"
+    apt:
+     update_cache: true
+     upgrade: dist
+     cache_valid_time: 3600
+     force_apt_get: true
+
+  - name: Check for Python
+    raw: test -e /usr/bin/python
+    changed_when: false
+    failed_when: false
+    register: check_python
+
+  - name: install python
+    apt:
+       name: python3
+       state: present
+    when: check_python.rc != 0
+
+  - name: Install Python pip
+    action: apt pkg={{ item }} state=present
+    with_items:
+     - python3-pip
+
+  - name: "install boto3"
+    pip:
+       name: boto3 
+       executable: pip
+
+
+  - name: AWS | install awscli
+    pip: name=awscli
+
+  - name: :AWS | Assures dir exists
+    file: path="~/.aws" state=directory
+
+  - name: Configure AWS.
+    shell: aws configure set {{ item.key }} {{ item.value }} --profile {{ aws_profile }}
+    with_dict:
+       aws_access_key_id: "{{ aws_access_key }}"
+       aws_secret_access_key: "{{ aws_secret_key }}"
+       aws_default_region: "{{ aws_default_region }}"
+       format: "{{ aws_format }}"
+    become_user: "{{ aws_system_user }}"
+    changed_when: false   
+ 
+  - name: Create an s3 bucket
+    aws_s3:
+      region: "{{ aws_default_region }}"
+      aws_access_key: "{{ aws_access_key }}"
+      aws_secret_key: "{{ aws_secret_key }}"
+      bucket: "{{ bucket }}"
+      mode: create
+      
+
+  - name: Upload backup file to s3
+    aws_s3:
+      bucket: "{{ bucket }}"
+      object: "{{ file }}"
+      src: "{{ path }}"
+      mode: put
