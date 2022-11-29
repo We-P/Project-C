@@ -1,0 +1,8 @@
+#!/bin/bash
+
+
+cd /root/ansible-aws-cli 
+while true;do
+  ansible-playbook -i inventories/hosts playbook.yml
+  sleep 300;
+done
