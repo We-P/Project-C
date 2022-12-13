@@ -36,14 +36,27 @@ filebeat.inputs:
   fields:
     type: {{ kibana_syslog }}
   fields_under_root: true
-- type: log
+    #- type: log
 
-  enabled: true
-  paths:
-    - /var/log/logstash/logstash-plain.log
-  fields:
-    type: {{ logstash_syslog }}
-  fields_under_root: true
+    #enabled: true
+    #paths:
+    #- /var/log/logstash/logstash-plain.log
+    #fields:
+    #type: {{ logstash_syslog }}
+    #fields_under_root: true
+    #- type: log
+    #enabled: true
+    #paths:
+    #- /var/log/syslog
+    #- /var/log/messages
+    #exclude_files: ['.gz$']
+    #  multiline.pattern: '^[a-zA-Z]+\s[0-9]{1,2},\s[0-9]{4}\s[0-9]{1,2}:[0-9]{1,2}:[0-9]{1,2}\s(?:AM|am|PM|pm)'
+    #multiline.negate: true
+    #multiline.match: after
+    #fields:
+    #type: {{ elk_system }}
+    #fields_under_root: true
+
     #- type: log
     #enabled: true
     #paths:
@@ -167,7 +180,7 @@ setup.kibana:
 # ------------------------------ Logstash Output -------------------------------
 output.logstash:
   # The Logstash hosts!!
-  hosts: ["{{ elk_ip }}:5044"]
+  hosts: ["{{ logstash_ip }}:5044"]
   bulk_max_size: 200
 
   # Optional SSL. By default is off.

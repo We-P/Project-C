@@ -6,8 +6,9 @@ curl -X PUT "$4:9200/$1?pretty" -u $2:$3
 curl -X POST "$4:5601/api/data_views/data_view" -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -d'
 {
   "data_view": {
-     "title": "'$1'",
-     "name": "'$1'"
+     "title": "'$1'*",
+     "name": "'$1'*",
+     "timeFieldName": "@timestamp"
   }
 }
 ' -u $2:$3

@@ -1,0 +1,10 @@
+---
+# tasks file for logstash_configure
+- name: copy config file
+  template:
+   src: first_pipeline.conf
+   dest: /etc/logstash/conf.d/first_pipeline.conf
+
+- name: ensure logstash is running
+  systemd: state=restarted name=logstash
+

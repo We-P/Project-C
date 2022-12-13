@@ -25,7 +25,17 @@
     src: ../templates/zabbix/filebeat.yml
     dest: /etc/filebeat
   when: inventory_hostname == "zabbix-server"
+- name: Filebeat configuration for sonarqube
+  template:
+    src: ../templates/sonarqube/filebeat.yml
+    dest: /etc/filebeat
+  when: inventory_hostname == "sonar-server"
+- name: Filebeat configuration for maven
+  template:
+    src: ../templates/maven/filebeat.yml
+    dest: /etc/filebeat
+  when: inventory_hostname == "maven-server"
 
 - name: ensure filebeat is running
-  systemd: state=started name=filebeat
+  systemd: state=restarted name=filebeat
 

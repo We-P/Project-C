@@ -11,10 +11,10 @@
         - ./vars/main.yml
   roles:
   - ./roles/apache_syslog
-    #- hosts: elk-server
-    #become: yes
-    #vars_files:
-#        - ./vars/main.yml
-#  roles:
-#  - ./roles/check_index
+- hosts: logstash-server
+  become: yes
+  vars_files:
+        - ./vars/main.yml
+  roles:
+  - ./roles/logstash_configure
 

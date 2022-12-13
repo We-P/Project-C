@@ -1,0 +1,20 @@
+---
+- hosts: maven-server
+  become: yes
+  vars_files:
+        - ./vars/main.yml
+  roles:
+  - ./roles/filebeat_configure
+- hosts: elk-server
+  become: yes
+  vars_files:
+        - ./vars/main.yml
+  roles:
+  - ./roles/maven_syslog
+- hosts: logstash-server
+  become: yes
+  vars_files:
+        - ./vars/main.yml
+  roles:
+  - ./roles/logstash_configure
+
