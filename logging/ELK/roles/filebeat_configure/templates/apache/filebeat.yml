@@ -32,6 +32,19 @@ filebeat.inputs:
   fields:
     type: {{ apache_syslog }}
   fields_under_root: true
+    #- type: log
+    #enabled: true
+    #paths:
+    #- /var/log/syslog
+    #- /var/log/messages
+    #exclude_files: ['.gz$']
+    #  multiline.pattern: '^[a-zA-Z]+\s[0-9]{1,2},\s[0-9]{4}\s[0-9]{1,2}:[0-9]{1,2}:[0-9]{1,2}\s(?:AM|am|PM|pm)'
+    #multiline.negate: true
+    #multiline.match: after
+    #fields:
+    #type: {{ apache_system }}
+    #fields_under_root: true
+
     #- c:\programdata\elasticsearch\logs\*
 
   # Exclude lines. A list of regular expressions to match. It drops the lines that are
@@ -149,7 +162,7 @@ setup.kibana:
 # ------------------------------ Logstash Output -------------------------------
 output.logstash:
   # The Logstash hosts!!
-  hosts: ["{{ elk_ip }}:5044"]
+  hosts: ["{{ logstash_ip }}:5044"]
   bulk_max_size: 200
 
   # Optional SSL. By default is off.

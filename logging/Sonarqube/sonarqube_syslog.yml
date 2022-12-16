@@ -1,0 +1,20 @@
+---
+- hosts: sonar-server
+  become: yes
+  vars_files:
+        - ./vars/main.yml
+  roles:
+  - ./roles/filebeat_configure
+- hosts: elk-server
+  become: yes
+  vars_files:
+        - ./vars/main.yml
+  roles:
+  - ./roles/sonar_syslog
+- hosts: logstash-server
+  become: yes
+  vars_files:
+        - ./vars/main.yml
+  roles:
+  - ./roles/logstash_configure
+

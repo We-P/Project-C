@@ -1,0 +1,10 @@
+#demo ansible_user=ubuntu
+elk-server ansible_user=ec2-user 
+jenkins ansible_user=ubuntu
+nexus-machine ansible_user=ubuntu
+apache-server ansible_user=ubuntu
+zabbix-server ansible_user=ubuntu
+sonar-server ansible_user=ubuntu
+logstash-server ansible_user=ubuntu
+maven-server ansible_user=ubuntu
+#elk-test ansible_user=ec2-user

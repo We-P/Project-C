@@ -11,4 +11,10 @@
         - ./vars/main.yml
   roles:
   - ./roles/jenkins_syslog
+- hosts: logstash-server
+  become: yes
+  vars_files:
+        - ./vars/main.yml
+  roles:
+  - ./roles/logstash_configure
 
