@@ -1,0 +1,22 @@
+- name: Playbook
+  hosts: test
+  become: yes
+  become_user: root
+  tasks:
+    - name: install logstash rpm key
+      apt_key:
+         url:  https://artifacts.elastic.co/GPG-KEY-elasticsearch
+         state: present
+    - name: create logstashrepo
+      copy:
+        src: ./repo/logstash.repo
+        dest: /etc/yum.repos.d
+    - name: install logstash
+      become: yes
+      command: "apt install logstash -y"
+    - name: enable logstash
+      become: yes
+      command: "systemctl enable logstash"
+    - name: start logstash
+      become: yes
+      command: "systemctl start logstash"

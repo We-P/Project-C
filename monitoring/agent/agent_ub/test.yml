@@ -1,5 +1,5 @@
 - name: Playbook
-  hosts:  logstash-server
+  hosts:  test
   become: yes
   become_user: root
   tasks:
@@ -23,7 +23,3 @@
        - name: enable  service
          become: yes
          command: "systemctl enable zabbix-agent"
-           #  - name: start  service
-           # become: yes
-           # command: "systemctl start zabbix-agent2" 
-

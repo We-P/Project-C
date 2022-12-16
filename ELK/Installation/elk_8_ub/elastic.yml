@@ -1,0 +1,54 @@
+- name: Playbook
+  hosts: test
+  become: yes
+  become_user: root
+  tasks:
+    - name: install elasticsearch apt key
+      apt_key:
+        url:  https://artifacts.elastic.co/GPG-KEY-elasticsearch
+        state: present
+    - name: ppackage on ubuntu
+      apt: 
+        state: present
+        pkg: apt-transport-https      
+    - name: Adding Elasticsearch repo
+      apt_repository:
+        repo: deb  https://artifacts.elastic.co/packages/8.x/apt stable main
+        state: present
+    - name: install elastic
+      apt: 
+        name: elasticsearch 
+        state: present
+    - name: create elasticyml
+      copy:
+        src: ./config/elasticsearch.yml
+        dest: /etc/elasticsearch
+    - name: enable elastic
+      become: yes
+      command: "systemctl enable elasticsearch"
+    - name: start elastic
+      become: yes
+      command: "systemctl start elasticsearch"
+
+
+    - name: install kibana apt key
+      apt_key:
+         url:  https://artifacts.elastic.co/GPG-KEY-elasticsearch
+         state: present
+    - name: create kibanarepo
+      copy:
+        src: ./repo/kibana.repo
+        dest: /etc/yum.repos.d
+    - name: install kibana
+      become: yes
+      command: "apt install kibana -y"
+    - name: create kibanayml
+      copy:
+        src: ./config/kibana.yml
+        dest: /etc/kibana
+    - name: enable kibana
+      become: yes
+      command: "systemctl enable kibana"
+    - name: start kibana
+      become: yes
+      command: "systemctl start kibana"

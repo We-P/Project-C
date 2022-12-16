@@ -1,0 +1,51 @@
+- name: Playbook
+  hosts: elk1
+  become: yes
+  become_user: root
+  tasks:
+    - name: install elasticsearch rpm key
+      rpm_key:
+         key:  https://artifacts.elastic.co/GPG-KEY-elasticsearch
+         state: present
+    - name: create elasticrepo
+      copy:
+        src: ./repo/elasticsearch.repo
+        dest: /etc/yum.repos.d
+    - name: install elastic
+      become: yes
+      command: "yum install --enablerepo=elasticsearch elasticsearch -y"
+    - name: create elasticyml
+      copy:
+        src: ./config/elasticsearch.yml
+        dest: /etc/elasticsearch
+    - name: enable elastic
+      become: yes
+      command: "systemctl enable elasticsearch"
+    - name: start elastic
+      become: yes
+      command: "systemctl start elasticsearch"
+    
+
+    - name: install kibana rpm key
+      rpm_key:
+         key:  https://artifacts.elastic.co/GPG-KEY-elasticsearch
+         state: present
+    - name: create kibanarepo
+      copy:
+        src: ./repo/kibana.repo
+        dest: /etc/yum.repos.d
+    - name: install kibana
+      become: yes
+      command: "yum install kibana -y"
+    - name: create kibanayml
+      copy:
+        src: ./config/kibana.yml
+        dest: /etc/kibana
+    - name: enable kibana
+      become: yes
+      command: "systemctl enable kibana"
+    - name: start kibana
+      become: yes
+      command: "systemctl start kibana"
+ 
+
