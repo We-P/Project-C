@@ -8,7 +8,8 @@ then
 {
   "data_view": {
      "title": "'$1'*",
-     "name": "'$1'"
+     "name": "'$1'",
+     "timeFieldName": "@timestamp"
   }
 }
 ' -u $2:$3
