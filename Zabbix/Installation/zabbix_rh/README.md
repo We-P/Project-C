@@ -10,5 +10,5 @@ ansible all -m ping
 ```
 - change the hostname in playbook and execute the playbook
 ```
-ansible-playbbok test.yml 
+ansible-playbook test.yml 
 ```
