@@ -30,5 +30,9 @@ This script launches six virtual machines in South India region in Azure. Apache
 
 Private IP address range `Class A: 10.0. 0.0 to 10.255. 255.255` is used in script.
 
+## Deploy
+Deploy all the resources after making all the necessary changes using command
+* `terraform apply`
+
 ## End result 
 ![Screenshot (166)](https://user-images.githubusercontent.com/98507485/208696636-c6f19b6a-ff9b-48ca-b9d4-34d8fc8aec31.png)
