@@ -1,6 +1,0 @@
-- hosts: elk100
-  become: yes
-  roles:
-     - ../roles/elasticsearch
-     - ../roles/kibana
-     - ../roles/logstash
