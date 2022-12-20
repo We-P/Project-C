@@ -17,3 +17,12 @@ Proceed to execute the playbook if the above command returns `SUCCESS`
 ```
 ansible-playbook jenkins_syslog.yml
 ```
+- To setup logging for different log file paths, change the path in `roles/filebeat_configure/templates/jenkins/filebeat.yml`
+```
+- type: log
+
+  enabled: true
+  paths:
+    - /var/log/jenkins.log
+```
+- Rerun the playbook
