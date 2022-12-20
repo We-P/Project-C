@@ -8,9 +8,9 @@ This script launches six virtual machines in Ohio region in AWS. Apache machine 
 
 ## Configure AWS CLI
 
-Configure AWS CLI using command `aws configure` by generating `Access key` from AWS Console.
+> Configure AWS CLI using command `aws configure` by generating `Access key` from AWS Console.
 ## SSH Key
-Generate ssh key by ussing command `ssh-keygen` , Name the key pair **projectplan** to match the name in script.
+> Generate ssh key by ussing command `ssh-keygen` , Name the key pair **projectplan** to match the name in script.
 
 ## variables.tf file
 
