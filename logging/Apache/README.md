@@ -24,6 +24,6 @@ ansible-playbook apache_syslog.yml
 
   enabled: true
   paths:
-    - /var/log/elasticsearch/apache.log
+    - /var/log/apache.log
 ```
 - Rerun the playbook
