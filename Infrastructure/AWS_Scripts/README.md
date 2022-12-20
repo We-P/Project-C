@@ -1,2 +1,21 @@
 # AWS Scripts to launch the vm's in isolated network using terraform
-![architecture](https://trello.com/1/cards/63502f7c07254f00176a92a9/attachments/6363f2c8e159520f807f8f6b/previews/6363f2c9e159520f807f904a/download/Screenshot_%28153%29.png)
+
+## Architecture
+![architecture](https://user-images.githubusercontent.com/98507485/208663496-0aa03045-ed34-42a2-a321-f7745f47e0a4.png)
+
+## Introduction
+This script launches six virtual machines in Ohio region in AWS. Apache machine will be  launched in Public subnet and other five machines will be launched in private subnets. Apache machine will be connected to Internet gateway to access internet whereas Private subnet machines are connected to natgateway to access to internet.Private subnet machines cannot be accessed by outside world.
+
+## This page follows what needs to be changed to  launch above architecture 
+## instance.tf
+
+SSH Key
+Generate ssh key by ussing command `ssh-keygen` , Name the key pair **projectplan** to match the name in script.
+
+AMI 
+ Change `ami` value according to region where we need to launch the machines
+
+Machine type 
+
+
+
