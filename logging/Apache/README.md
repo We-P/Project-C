@@ -17,3 +17,13 @@ Proceed to execute the playbook if the above command returns `SUCCESS`
 ```
 ansible-playbook apache_syslog.yml
 ```
+
+- To setup logging for different log file paths, change the path in `roles/filebeat_configure/templates/filebeat.yml`
+```
+- type: log
+
+  enabled: true
+  paths:
+    - /var/log/elasticsearch/apache.log
+```
+- Rerun the playbook
