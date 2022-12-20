@@ -9,18 +9,17 @@ This script launches six virtual machines in South India region in Azure. Apache
 ## Configure Azure
 * Register a new application in Azure UI
 * Give that application contributor role
-* Copy the subscription_id,tenant_id,client_id,client_secret
+* Copy the subscription_id,tenant_id,client_id,client_secret and add them in provider.tf file
+* 
 ## SSH Key
 > Generate ssh key by ussing command `ssh-keygen` , Name the key pair **projectplan** to match the name in script.
 
-## variables.tf file
+## Changes
 
-> Change `ami` value according to region where we need to launch the machines.
+> In compute.tf file Change `source image reference` value according to region where we need to launch the machines.
  
 
-> Script launches `t2.micro machines` , change according to requirement.
-
-> Change  `availability zone` in specific region.
+> Change location in locals.tf file according to the requirement
  
 
 > Change the `size` of the disk of GB/TB required.
