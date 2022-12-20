@@ -6,6 +6,7 @@ This playbook configures filebeat to pick apache system logs and ship them to lo
 ```
 cd /root/apache_syslog
 ```
+- Setup ssh connection between Ansible server and host machine by copying the public key of ansible server to the host machine
 - Add host details in inventory file
 - Test the connection with
 ```
