@@ -1,7 +1,0 @@
----
-# tasks file for prerequisites
-- name: Install Packages
-  yum: name= state=latest update_cache=yes
-  with_items:
-    - default-jdk
-
