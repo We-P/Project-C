@@ -1,0 +1,218 @@
+zabbix_export:
+  version: '6.2'
+  date: '2022-12-20T07:30:37Z'
+  template_groups:
+    -
+      uuid: c42b3001652441f0b4078201e17c9886
+      name: DevOps
+  templates:
+    -
+      uuid: eea49f61fa104b59848bb4525ef52360
+      template: Linux-Common
+      name: Linux-Common
+      groups:
+        -
+          name: DevOps
+      items:
+        -
+          uuid: 5e6898b06f654d42b0c8e90dc84fea27
+          name: 'Host name of Zabbix agent running'
+          key: agent.hostname
+          trends: '0'
+          value_type: CHAR
+          preprocessing:
+            -
+              type: DISCARD_UNCHANGED_HEARTBEAT
+              parameters:
+                - 1d
+        -
+          uuid: 73a54aabfcc54a718b107c9df5b8f6f2
+          name: 'Version of Zabbix agent running'
+          key: agent.version
+          trends: '0'
+          value_type: CHAR
+          preprocessing:
+            -
+              type: DISCARD_UNCHANGED_HEARTBEAT
+              parameters:
+                - 1d
+        -
+          uuid: a174e512f1914b59a4446997d11be994
+          name: Network-Usage
+          key: 'net.if.total[eth0,bytes]'
+        -
+          uuid: a60ea659f772417188b72a7a7955a157
+          name: 'Number of processes'
+          key: proc.num
+          units: B
+        -
+          uuid: b124859f63804af0a02b4ef3b337f984
+          name: 'Load average (5m avg)'
+          key: 'system.cpu.load[all,avg5]'
+          value_type: FLOAT
+        -
+          uuid: dc641d6ded534edab8504c351bfe2bc5
+          name: 'Number of CPUs'
+          key: system.cpu.num
+        -
+          uuid: 237507d522484af4bee83e1d86557daf
+          name: 'CPU utilization'
+          type: DEPENDENT
+          key: system.cpu.util
+          delay: '0'
+          value_type: FLOAT
+          units: '%'
+          master_item:
+            key: 'system.cpu.util[,idle]'
+        -
+          uuid: bb8ec762d6384557a0e3e4a2e37a3c2b
+          name: 'CPU idle time'
+          key: 'system.cpu.util[,idle]'
+          value_type: FLOAT
+          units: '%'
+        -
+          uuid: 9c3f8700ac744ca6a839da59c5b551c8
+          name: 'Operating system'
+          key: system.sw.os
+          trends: '0'
+          value_type: CHAR
+          preprocessing:
+            -
+              type: DISCARD_UNCHANGED_HEARTBEAT
+              parameters:
+                - 1d
+        -
+          uuid: 0bcecd5d1217416ab2b9e2770abdbafc
+          name: 'Number of logged in users'
+          key: system.users.num
+        -
+          uuid: 717b23f724c34683bd9c1db11c03ff12
+          name: 'Block devices'
+          key: vfs.dev.discovery
+          trends: '0'
+          value_type: TEXT
+        -
+          uuid: 82d6c45498454e2d911bfa1495fdeb4c
+          name: 'Mounted file system'
+          key: vfs.fs.get
+          trends: '0'
+          value_type: TEXT
+        -
+          uuid: 3f01fadc6f234e69ae5de81df01ff6b7
+          name: DISK-Usage
+          key: 'vfs.fs.size[/,pused]'
+          value_type: FLOAT
+          units: '%'
+        -
+          uuid: fd7957ca6c0c451d8a47f6a3762597a8
+          name: 'Available memory'
+          key: 'vm.memory.size[available]'
+          units: B
+        -
+          uuid: 7b304e3a105141ca8e0cdeb4bdf16d1e
+          name: 'Available memory in %'
+          key: 'vm.memory.size[pavailable]'
+          value_type: FLOAT
+          units: '%'
+        -
+          uuid: a9db831c167b4b49b5b2e241098781fb
+          name: RAM-Usage
+          key: 'vm.memory.size[pused]'
+          value_type: FLOAT
+          units: '%'
+        -
+          uuid: 9c85dc26885d44d8badcdfa0dc420d78
+          name: 'Total memory'
+          key: 'vm.memory.size[total]'
+          units: B
+        -
+          uuid: 4719dcab5a954db7ae7f079be035c76e
+          name: 'Memory utilization'
+          type: DEPENDENT
+          key: vm.memory.utilization
+          delay: '0'
+          value_type: FLOAT
+          units: '%'
+          master_item:
+            key: 'vm.memory.size[pavailable]'
+  graphs:
+    -
+      uuid: b759de02ebe24342a54b9843e3be3d5b
+      name: 'Available memory'
+      graph_items:
+        -
+          color: 1A7C11
+          calc_fnc: ALL
+          item:
+            host: Linux-Common
+            key: 'vm.memory.size[available]'
+    -
+      uuid: f6a5d33fee5446b2882a3578bcde2c10
+      name: 'CPU Utilization'
+      graph_items:
+        -
+          color: 1A7C11
+          calc_fnc: ALL
+          item:
+            host: Linux-Common
+            key: system.cpu.util
+    -
+      uuid: d1abc5e373e542a19c5464928bdc7f71
+      name: 'Disk Usage'
+      graph_items:
+        -
+          color: 1A7C11
+          calc_fnc: ALL
+          item:
+            host: Linux-Common
+            key: 'vfs.fs.size[/,pused]'
+    -
+      uuid: 54912aeccd9c4803b9a7c4044e595ad2
+      name: 'Load average (5m avg)'
+      graph_items:
+        -
+          color: 1A7C11
+          calc_fnc: ALL
+          item:
+            host: Linux-Common
+            key: 'system.cpu.load[all,avg5]'
+    -
+      uuid: 9c082acebeac4b4296be2e138408e5ef
+      name: 'Memory Utilization'
+      graph_items:
+        -
+          color: 1A7C11
+          calc_fnc: ALL
+          item:
+            host: Linux-Common
+            key: vm.memory.utilization
+    -
+      uuid: 099e8eba97c943b0a9e08a90f2fad606
+      name: 'Network Usage'
+      graph_items:
+        -
+          color: 1A7C11
+          calc_fnc: ALL
+          item:
+            host: Linux-Common
+            key: 'net.if.total[eth0,bytes]'
+    -
+      uuid: 8b945fb103d3443c8097e0aaa6ed90f3
+      name: RAM-Usage
+      graph_items:
+        -
+          color: 1A7C11
+          calc_fnc: ALL
+          item:
+            host: Linux-Common
+            key: 'vm.memory.size[pused]'
+    -
+      uuid: 1f417aaf1c5c4077bf27dd0fcc00f140
+      name: 'Total Memory'
+      graph_items:
+        -
+          color: 1A7C11
+          calc_fnc: ALL
+          item:
+            host: Linux-Common
+            key: 'vm.memory.size[total]'
