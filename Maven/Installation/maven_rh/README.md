@@ -10,5 +10,5 @@ ansible all -m ping
 ```
 - change the hostname in playbook and execute the playbook
 ```
-ansible-playbbok maven_rh.yml 
+ansible-playbook maven_rh.yml 
 ```
