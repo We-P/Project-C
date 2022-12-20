@@ -7,6 +7,7 @@ It also imports a sample dashboard for jenkins jobs on the elk server.
 ```
 cd /root/jenkins_job_logs
 ```
+- Setup ssh connection between Ansible server and host machine by copying the public key of ansible server to the host machine
 - Add host details in inventory file
 - Test the connection with
 ```
