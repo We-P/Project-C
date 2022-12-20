@@ -10,5 +10,6 @@ ansible all -m ping
 ```
 - change the hostname in playbook and execute the playbook
 ```
-ansible-playbbok elastic.yml 
+ansible-playbook elastic.yml 
+ansible-playbook logstash.yml 
 ```
