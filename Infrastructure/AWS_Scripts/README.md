@@ -29,6 +29,10 @@ This script launches six virtual machines in Ohio region in AWS. Apache machine 
 
 Private IP address range `Class A: 10.0. 0.0 to 10.255. 255.255` is used in script.
 
+## Deploy
+Deploy all the resources after making all the necessary changes using command
+* `terraform apply`
+
 ## End result 
 ![architecture](https://user-images.githubusercontent.com/98507485/208663496-0aa03045-ed34-42a2-a321-f7745f47e0a4.png)
 
