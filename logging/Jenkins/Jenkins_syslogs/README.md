@@ -6,6 +6,7 @@ This playbook configures filebeat to pick jenkins system logs and ship them to l
 ```
 cd /root/jenkins_syslog
 ```
+- Setup ssh connection between Ansible server and host machine by copying the public key of ansible server to the host machine
 - Add host details in inventory file
 - Test the connection with
 ```
