@@ -10,16 +10,17 @@ This script launches six virtual machines in South India region in Azure. Apache
 * Register a new application in Azure UI
 * Give that application contributor role
 * Copy the subscription_id,tenant_id,client_id,client_secret and add them in provider.tf file
-* 
+
 ## SSH Key
 > Generate ssh key by ussing command `ssh-keygen` , Name the key pair **projectplan** to match the name in script.
 
 ## Changes
 
-> In compute.tf file Change `source image reference` value according to region where we need to launch the machines.
+> In `compute.tf` file Change `source image reference` value according to region where we need to launch the machines.
  
 
-> Change location in locals.tf file according to the requirement
+
+> Change `location` in `locals.tf` file according to the requirement
  
 
 > Change the `size` of the disk of GB/TB required.
@@ -30,3 +31,4 @@ This script launches six virtual machines in South India region in Azure. Apache
 Private IP address range `Class A: 10.0. 0.0 to 10.255. 255.255` is used in script.
 
 ## End result 
+![Screenshot (166)](https://user-images.githubusercontent.com/98507485/208696636-c6f19b6a-ff9b-48ca-b9d4-34d8fc8aec31.png)
