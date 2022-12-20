@@ -1,6 +1,6 @@
 # Ansible playbook for shipping jenkins job logs to elk stack
 This playbook installs and configures logstash plugin on jenkins server. Further, it creates a corresponding index on elk server on which the jenkins job logs are stored.
-
+It also imports a sample dashboard for jenkins jobs on the elk server.
 
 ## Setup
 - Clone or download the repo to your Ansible machine
